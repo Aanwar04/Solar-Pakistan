@@ -1,0 +1,351 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Use this solar panel calculator for Pakistani homes to estimate panel needs from bill units or appliances. Compare solar systems and battery backup.">
+    <title>Solar Panel Calculator for Pakistani Homes | Solar Guide</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Prata&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <header class="masthead">
+      <a class="wordmark" href="#top" aria-label="Solar field guide home">Solar field guide</a>
+      <nav class="site-nav" aria-label="Main navigation">
+        <a href="#compare">Compare systems</a>
+        <a href="#estimate">Estimate solar</a>
+        <a class="nav-action" href="#questions">Common questions</a>
+      </nav>
+    </header>
+
+    <main id="main">
+      <section class="hero container" id="top" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <h1 id="hero-title">A simple solar panel calculator for Pakistani homes.</h1>
+          <p class="lead">Compare on-grid, off-grid and hybrid solar systems, understand battery backup during power cuts, and estimate panel needs from your bill or the devices you use.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#compare">Compare the systems</a>
+            <a class="text-link" href="#estimate">Try the estimate</a>
+          </div>
+        </div>
+
+        <figure class="flow-figure" aria-labelledby="flow-caption">
+          <div class="system-picker" role="group" aria-label="Choose a solar system">
+            <button type="button" class="system-tab" data-system="on-grid" aria-pressed="true" aria-controls="flow-diagram">On-grid</button>
+            <button type="button" class="system-tab" data-system="off-grid" aria-pressed="false" aria-controls="flow-diagram">Off-grid</button>
+            <button type="button" class="system-tab" data-system="hybrid" aria-pressed="false" aria-controls="flow-diagram">Hybrid</button>
+          </div>
+          <svg class="flow-diagram" id="flow-diagram" viewBox="0 0 620 340" role="img" aria-labelledby="diagram-title diagram-description">
+            <title id="diagram-title">Solar power flow</title>
+            <desc id="diagram-description">Solar panels and your usual electricity supply can both power the home. Most standard systems switch off during a power cut.</desc>
+            <defs>
+              <marker id="arrow" markerWidth="8" markerHeight="8" refX="6" refY="4" orient="auto">
+                <path d="M0 0 8 4 0 8" fill="none" stroke="currentColor" stroke-width="1.5"></path>
+              </marker>
+            </defs>
+            <g class="flow-lines" fill="none" stroke="currentColor" stroke-width="2">
+              <path class="flow flow-solar-home" data-active="true" d="M190 125 C215 125 219 153 245 153" marker-end="url(#arrow)"></path>
+              <path class="flow flow-grid-home" data-active="true" d="M430 125 C405 125 401 153 375 153" marker-end="url(#arrow)"></path>
+              <path class="flow flow-solar-battery" data-active="false" d="M178 174 C200 211 221 261 245 267" marker-end="url(#arrow)"></path>
+              <path class="flow flow-battery-home" data-active="false" d="M310 230 C310 215 310 208 310 201" marker-end="url(#arrow)"></path>
+            </g>
+            <g class="diagram-node node-solar">
+              <rect class="node-card" x="25" y="66" width="165" height="116" rx="8"></rect>
+              <circle class="icon-sun" cx="153" cy="91" r="10"></circle>
+              <path class="icon-sun-rays" d="M153 74v-5m0 44v-5m17-17h5m-44 0h5m29-12 4-4m-31 31 4-4m23 0 4 4m-31-31 4 4"></path>
+              <path class="icon-panel" d="m60 92 76 0 10 43H51z"></path>
+              <path class="icon-panel-grid" d="m79 92-8 43m27-43-3 43m22-43 5 43m-64-21h82"></path>
+              <path class="icon-panel-legs" d="m69 135-7 12m54-12 7 12m-64 0h70"></path>
+              <text x="107" y="169" text-anchor="middle">Solar panels</text>
+            </g>
+            <g class="diagram-node node-home">
+              <rect class="node-card" x="245" y="103" width="130" height="107" rx="8"></rect>
+              <path class="icon-home" d="m269 153 41-34 41 34m-72-4v37h62v-37m-42 37v-25h20v25m-34-22h8v8h-8m39-8h8v8h-8"></path>
+              <text x="310" y="199" text-anchor="middle">Your home</text>
+            </g>
+            <g class="diagram-node node-grid">
+              <rect class="node-card" x="430" y="66" width="165" height="116" rx="8"></rect>
+              <path class="icon-grid" d="m512 84-20 66m20-66 20 66m-20-66v72m-24-53h48m-38 13h28m-33 13h38m-44 21h50m-43-47 19 13m-19 0 19-13m-24 26 24 12m14-12-14 12"></path>
+              <path class="icon-bolt" d="m546 103-10 18h9l-8 16"></path>
+              <text x="512" y="169" text-anchor="middle">Power supply</text>
+            </g>
+            <g class="diagram-node node-battery">
+              <rect class="node-card" x="245" y="230" width="130" height="91" rx="8"></rect>
+              <rect class="icon-battery-case" x="282" y="243" width="56" height="38" rx="4"></rect>
+              <path class="icon-battery-terminal" d="M296 243v-5h8v5m12 0v-5h8v5"></path>
+              <path class="icon-battery-charge" d="m315 249-10 14h8l-5 12 14-17h-9z"></path>
+              <text x="310" y="306" text-anchor="middle">Battery</text>
+            </g>
+          </svg>
+          <figcaption id="flow-caption">
+            <strong id="system-name">On-grid solar system</strong>
+            <span id="system-summary">Uses your usual electricity supply; standard models stop during a power cut.</span>
+          </figcaption>
+        </figure>
+      </section>
+
+      <section class="comparison section-rule" id="compare" aria-labelledby="compare-title">
+        <div class="container">
+          <div class="section-intro">
+            <h2 id="compare-title">Compare solar systems for your home</h2>
+            <p class="lead">The main difference is whether your home can use stored power when the usual electricity supply is off.</p>
+          </div>
+          <div class="table-wrap" role="region" aria-label="Inverter system comparison" tabindex="0">
+            <table class="comparison-table">
+              <thead>
+                <tr>
+                  <th scope="col">What changes</th>
+                  <th scope="col">On-grid</th>
+                  <th scope="col">Off-grid</th>
+                  <th scope="col">Hybrid</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">Usual electricity supply</th>
+                  <td>Connected</td>
+                  <td>Not needed</td>
+                  <td>Usually connected</td>
+                </tr>
+                <tr>
+                  <th scope="row">Battery to save power</th>
+                  <td>Usually none</td>
+                  <td>Essential</td>
+                  <td>Optional, needed for stored backup</td>
+                </tr>
+                <tr>
+                  <th scope="row">During a power cut</th>
+                  <td>Most models switch off</td>
+                  <td>Can use sunlight and stored power</td>
+                  <td>Can keep selected devices running with a suitable battery</td>
+                </tr>
+                <tr>
+                  <th scope="row">Often suits</th>
+                  <td>Homes using solar alongside their usual electricity supply</td>
+                  <td>Homes with little or no reliable electricity supply</td>
+                  <td>Homes that want battery backup as well as grid electricity</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <p class="table-note">Sending extra solar power back to the electricity company may need its approval.</p>
+        </div>
+      </section>
+
+      <section class="guide container" aria-labelledby="guide-title">
+        <div class="guide-heading">
+          <h2 id="guide-title">What happens during a power cut?</h2>
+          <p>Keeping devices on needs the right equipment, a battery, and those devices connected for backup.</p>
+        </div>
+        <div class="guide-list">
+          <article class="guide-row">
+            <h3>On-grid</h3>
+            <p>Most standard systems switch off during a power cut for safety. Solar panels alone do not keep the lights on.</p>
+          </article>
+          <article class="guide-row">
+            <h3>Off-grid</h3>
+            <p>A battery saves extra daytime solar for later. The amount you can use depends on the battery size and weather.</p>
+          </article>
+          <article class="guide-row">
+            <h3>Hybrid</h3>
+            <p>Can use your usual electricity supply and a battery. Only devices connected to the backup outlets stay on.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="estimate-section" id="estimate" aria-labelledby="estimate-title">
+        <div class="container estimate-layout">
+          <div class="estimate-copy">
+            <h2 id="estimate-title">Get a rough estimate for your home.</h2>
+            <p>Use the monthly electricity units on your bill, or list a few devices. You do not need to know their power ratings—we fill in typical values to get you started.</p>
+            <p class="assumption-note">This is a starting point, not a quote or final system design. A local solar professional can check your roof, shade, equipment, and backup needs.</p>
+          </div>
+          <div class="calculator">
+            <div class="calculator-tabs" role="group" aria-label="Choose a calculator input">
+              <button class="calculator-tab" type="button" data-calculator="monthly" aria-pressed="true" aria-controls="estimate-form">I know my monthly units</button>
+              <button class="calculator-tab" type="button" data-calculator="appliances" aria-pressed="false" aria-controls="appliance-form">Help me list my devices</button>
+            </div>
+            <div class="panel-choice">
+              <label for="panel-wattage">Power rating on each solar panel</label>
+              <select id="panel-wattage">
+                <option value="550" selected>550 W (typical)</option>
+                <option value="580">580 W</option>
+                <option value="585">585 W</option>
+                <option value="600">600 W</option>
+                <option value="620">620 W</option>
+                <option value="700">700 W</option>
+                <option value="720">720 W</option>
+              </select>
+              <p class="form-help">Find the watt rating on the panel label or quote. If you are not sure, keep 550 W.</p>
+            </div>
+            <div class="city-choice">
+              <label for="solar-city">Choose your city (optional)</label>
+              <select id="solar-city">
+                <option value="">No city selected</option>
+                <option value="Karachi" data-sun-hours="5.6">Karachi</option>
+                <option value="Lahore" data-sun-hours="4.9">Lahore</option>
+                <option value="Islamabad" data-sun-hours="4.9">Islamabad</option>
+                <option value="Peshawar" data-sun-hours="5.2">Peshawar</option>
+                <option value="Quetta" data-sun-hours="6.1">Quetta</option>
+                <option value="Multan" data-sun-hours="5.1">Multan</option>
+                <option value="Hyderabad" data-sun-hours="5.6">Hyderabad</option>
+                <option value="Faisalabad" data-sun-hours="4.8">Faisalabad</option>
+                <option value="Other" data-sun-hours="5.0">Other city or nearby area</option>
+              </select>
+              <p class="form-help" id="city-sunlight-note">
+                City values are approximate annual sunlight averages on a horizontal surface from <a href="https://power.larc.nasa.gov/docs/services/api/temporal/climatology/" target="_blank" rel="noopener noreferrer">NASA POWER</a> (2001–2025, about 1° resolution). They are a starting point; your roof angle, shade, and local weather affect actual production.
+              </p>
+            </div>
+            <form class="estimate-form" id="estimate-form" data-calculator-panel="monthly">
+              <label for="monthly-kwh">Electricity used in a month</label>
+              <div class="input-unit">
+                <input id="monthly-kwh" name="monthlyKwh" type="number" min="1" max="100000" step="1" required inputmode="decimal">
+                <span>units</span>
+              </div>
+              <p class="form-help">Find “units consumed” on your electricity bill. One unit is the same as 1 kWh. Not sure? Check a recent bill or use the device list instead.</p>
+              <details class="advanced-settings">
+                <summary>Change sunlight and system assumptions</summary>
+                <label for="sun-hours">Strong sunlight each day</label>
+                <div class="input-unit">
+                  <input id="sun-hours" name="sunHours" type="number" min="1" max="10" step="0.1" value="5" required inputmode="decimal">
+                  <span>hours</span>
+                </div>
+                <p class="form-help">Choosing a city fills in an approximate starting value. You can adjust it if you have a better local estimate.</p>
+                <label for="performance-ratio">Estimated system efficiency</label>
+                <div class="input-unit">
+                  <input id="performance-ratio" name="performanceRatio" type="number" min="40" max="95" step="1" value="78" required inputmode="decimal">
+                  <span>%</span>
+                </div>
+                <p class="form-help">A planning allowance for heat, dust, and normal equipment losses. Leave at 78% if unsure.</p>
+              </details>
+              <button class="button button-primary estimate-button" type="submit">Estimate my system</button>
+            </form>
+            <form class="estimate-form appliance-form" id="appliance-form" data-calculator-panel="appliances" hidden>
+              <p class="form-help">Choose your devices and say roughly how long you use them. We fill in typical power use; “Other” starts at 100 W. Change a rating only if you know the number printed on the device label.</p>
+              <p class="appliance-error" id="appliance-error" role="alert"></p>
+              <p class="appliance-limit" id="appliance-limit" role="status" aria-live="polite"></p>
+              <p class="form-help" id="backup-help">Select “Keep on during a power cut” only for devices you want the battery to run. The battery estimate assumes those devices run at full power for the full time you choose.</p>
+              <div class="appliance-list" id="appliance-list" aria-label="Appliances" tabindex="-1">
+                <div class="appliance-row" data-appliance-row>
+                  <label class="appliance-name" for="appliance-name-1">Appliance 1</label>
+                  <select id="appliance-name-1" name="applianceName" data-field="name" aria-label="Appliance 1 type">
+                    <option value="Fan">Fan</option><option value="Inverter AC 1 ton">Inverter AC 1 ton</option><option value="Inverter AC 1.5 ton">Inverter AC 1.5 ton</option><option value="Inverter AC 2 ton">Inverter AC 2 ton</option><option value="Refrigerator">Refrigerator</option><option value="Deep freezer">Deep freezer</option><option value="Electric geyser">Electric geyser</option><option value="Pump 0.5 HP">Pump 0.5 HP</option><option value="Pump 1 HP">Pump 1 HP</option><option value="Iron">Iron</option><option value="Washing machine">Washing machine</option><option value="LED TV">LED TV</option><option value="LED light">LED light</option><option value="Other">Other</option>
+                  </select>
+                  <label for="appliance-watts-1">Typical power (W)</label>
+                  <input id="appliance-watts-1" name="watts" data-field="watts" type="number" min="1" max="100000" value="75" required inputmode="decimal">
+                  <label for="appliance-quantity-1">How many?</label>
+                  <input id="appliance-quantity-1" name="quantity" data-field="quantity" type="number" min="0" max="100" step="1" value="2" required inputmode="numeric">
+                  <label for="appliance-hours-1">Hours used each day</label>
+                  <input id="appliance-hours-1" name="hours" data-field="hours" type="number" min="0" max="24" step="0.5" value="8" required inputmode="decimal">
+                  <label class="critical-label" for="appliance-critical-1"><input id="appliance-critical-1" name="critical" data-field="critical" type="checkbox" checked> Keep on during a power cut</label>
+                  <button class="remove-appliance" type="button" aria-label="Remove appliance 1">Remove</button>
+                </div>
+                <div class="appliance-row" data-appliance-row>
+                  <label class="appliance-name" for="appliance-name-2">Appliance 2</label>
+                  <select id="appliance-name-2" name="applianceName" data-field="name" aria-label="Appliance 2 type">
+                    <option value="Fan">Fan</option><option value="Inverter AC 1 ton" selected>Inverter AC 1 ton</option><option value="Inverter AC 1.5 ton">Inverter AC 1.5 ton</option><option value="Inverter AC 2 ton">Inverter AC 2 ton</option><option value="Refrigerator">Refrigerator</option><option value="Deep freezer">Deep freezer</option><option value="Electric geyser">Electric geyser</option><option value="Pump 0.5 HP">Pump 0.5 HP</option><option value="Pump 1 HP">Pump 1 HP</option><option value="Iron">Iron</option><option value="Washing machine">Washing machine</option><option value="LED TV">LED TV</option><option value="LED light">LED light</option><option value="Other">Other</option>
+                  </select>
+                  <label for="appliance-watts-2">Typical power (W)</label>
+                  <input id="appliance-watts-2" name="watts" data-field="watts" type="number" min="1" max="100000" value="900" required inputmode="decimal">
+                  <label for="appliance-quantity-2">How many?</label>
+                  <input id="appliance-quantity-2" name="quantity" data-field="quantity" type="number" min="0" max="100" step="1" value="1" required inputmode="numeric">
+                  <label for="appliance-hours-2">Hours used each day</label>
+                  <input id="appliance-hours-2" name="hours" data-field="hours" type="number" min="0" max="24" step="0.5" value="4" required inputmode="decimal">
+                  <label class="critical-label" for="appliance-critical-2"><input id="appliance-critical-2" name="critical" data-field="critical" type="checkbox"> Keep on during a power cut</label>
+                  <button class="remove-appliance" type="button" aria-label="Remove appliance 2">Remove</button>
+                </div>
+              </div>
+              <button class="add-appliance" id="add-appliance" type="button">Add another device</button>
+              <details class="advanced-settings">
+                <summary>Change sunlight and system assumptions</summary>
+                <label for="appliance-sun-hours">Strong sunlight each day</label>
+                <div class="input-unit">
+                  <input id="appliance-sun-hours" name="sunHours" type="number" min="1" max="10" step="0.1" value="5" required inputmode="decimal">
+                  <span>hours</span>
+                </div>
+                <p class="form-help">Choosing a city fills in an approximate starting value. You can adjust it if you have a better local estimate.</p>
+                <label for="appliance-performance">Estimated system efficiency</label>
+                <div class="input-unit">
+                  <input id="appliance-performance" name="performanceRatio" type="number" min="40" max="95" step="1" value="78" required inputmode="decimal">
+                  <span>%</span>
+                </div>
+                <p class="form-help">A planning allowance for heat, dust, and normal equipment losses. Leave at 78% if unsure.</p>
+              </details>
+              <label for="system-type">Choose the kind of solar system</label>
+              <select id="system-type" name="systemType">
+                <option value="on-grid">On-grid (usually no backup)</option>
+                <option value="hybrid" selected>Hybrid (can include battery backup)</option>
+                <option value="off-grid">Off-grid (battery needed)</option>
+              </select>
+              <div class="backup-duration" id="backup-duration">
+                <label for="backup-hours">How many hours should selected devices stay on?</label>
+                <div class="input-unit">
+                  <input id="backup-hours" name="backupHours" type="number" min="1" max="24" step="1" value="4" required inputmode="numeric">
+                  <span>hours</span>
+                </div>
+              </div>
+              <button class="button button-primary estimate-button" type="submit">Estimate my system</button>
+              <p class="form-help" id="battery-estimate-help">Your battery estimate is approximate. An installer must check battery type, device startup power, and safe wiring.</p>
+            </form>
+          </div>
+          <div class="estimate-results" id="estimate-results" aria-live="polite" aria-atomic="true">
+            <p class="results-heading">Your estimate will appear here</p>
+            <dl class="result-list">
+              <div><dt>Electricity used each day</dt><dd><output id="daily-kwh">—</output> kWh</dd></div>
+              <div id="connected-result" hidden><dt>Power if all listed devices run together (rough maximum)</dt><dd><output id="connected-kw">—</output> kW</dd></div>
+              <div><dt>Suggested solar system size</dt><dd><output id="target-kwp">—</output> kWp</dd></div>
+              <div><dt>Panels (<output id="panel-wattage-label">550</output> W each)</dt><dd><output id="panel-count">—</output></dd></div>
+              <div><dt>Combined size of those panels</dt><dd><output id="installed-kwp">—</output> kWp</dd></div>
+              <div><dt>Possible solar electricity in a month</dt><dd><output id="estimated-kwh">—</output> kWh</dd></div>
+              <div id="battery-result" hidden><dt>Battery capacity for selected backup devices</dt><dd><output id="battery-kwh">—</output> kWh</dd></div>
+            </dl>
+            <p class="estimate-basis" id="estimate-basis">Your calculation inputs will appear here.</p>
+            <p class="estimate-disclaimer" id="estimate-message">Enter your monthly units or list your devices, then calculate to see an estimate.</p>
+            <p class="form-help">“kWh” is the same as a bill unit. “kW” and “kWp” describe equipment size. Actual results vary with weather, shade, and your equipment.</p>
+            <button class="button button-primary print-estimate" id="print-estimate" type="button" disabled aria-describedby="print-help">Print or save as PDF</button>
+            <p class="form-help" id="print-help">After calculating, choose “Save as PDF” in your browser’s print dialog.</p>
+          </div>
+        </div>
+      </section>
+
+      <section class="questions container" id="questions" aria-labelledby="questions-title">
+        <h2 id="questions-title">Questions worth asking</h2>
+        <div class="faq-list">
+          <details>
+            <summary>Will solar panels keep my home on during a power cut?</summary>
+            <p>Not automatically. It depends on the inverter and how the system is wired. Ask your installer which devices have backup, whether a battery is included, and whether it can handle devices starting up.</p>
+          </details>
+          <details>
+            <summary>Can I send extra solar electricity to the grid in Pakistan?</summary>
+            <p>Grid export can require utility approval, compatible equipment, and a suitable meter. Requirements and payment rules can change, so check the latest <a href="https://nepra.org.pk/" target="_blank" rel="noopener noreferrer">NEPRA notices</a> and ask your local electricity provider before buying a system.</p>
+          </details>
+          <details>
+            <summary>What should I check before choosing a solar installer?</summary>
+            <p>Ask for a written quote listing equipment models, expected output and its assumptions, battery and backup details, installation and protection work, warranties, and after-sales support. The <a href="https://www.energy.gov/cmei/systems/homeowners-guide-solar" target="_blank" rel="noopener noreferrer">U.S. Department of Energy homeowner’s guide</a> has general questions to help compare proposals; local approvals still depend on Pakistani requirements.</p>
+          </details>
+          <details>
+            <summary>Can an off-grid system work without a battery?</summary>
+            <p>Solar panels can power devices while the sun is shining. At night or when sunlight is low, you need a battery or another power source.</p>
+          </details>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container footer-inner">
+        <a class="wordmark" href="#top">Solar field guide</a>
+        <p>Understand the system before choosing equipment.</p>
+        <nav aria-label="Footer navigation">
+          <a href="#compare">Compare</a>
+          <a href="#estimate">Estimate</a>
+          <a href="#questions">Questions</a>
+        </nav>
+        <p class="footer-note">Confirm system design, safety, and utility requirements with qualified local professionals.</p>
+      </div>
+    </footer>
+    <script defer src="./app.js"></script>
+  </body>
+</html>
