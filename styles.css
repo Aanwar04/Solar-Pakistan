@@ -227,6 +227,46 @@ a:hover {
   margin: 0;
   padding: var(--space-lg);
   background: var(--color-paper-2);
+  border: 1px solid var(--color-rule);
+  border-radius: 24px;
+}
+
+.diagram-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: var(--space-sm);
+  margin-bottom: var(--space-lg);
+}
+
+.diagram-heading .eyebrow { margin: 0; }
+.diagram-key {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-xs);
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+.diagram-key i {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--color-accent);
+}
+.diagram-status {
+  margin-block: var(--space-sm) var(--space-lg);
+  color: var(--color-accent);
+  font-size: var(--text-xs);
+  text-align: center;
+}
+.diagram-node {
+  transition: opacity var(--dur-short) var(--ease-out);
+}
+.diagram-node[data-connected="false"] { opacity: 0.35; }
+.diagram-node.node-home .node-card {
+  stroke: var(--color-accent);
+  stroke-width: 2;
 }
 
 .system-picker {
@@ -235,9 +275,14 @@ a:hover {
   flex-wrap: wrap;
   gap: var(--space-xs);
   margin-bottom: var(--space-md);
+  padding: 5px;
+  border: 1px solid var(--color-rule);
+  border-radius: var(--radius-pill);
+  background: var(--color-paper);
 }
 
 .system-tab {
+  flex: 1;
   min-height: 44px;
   border: 1px solid var(--color-rule);
   border-radius: var(--radius-pill);
@@ -256,8 +301,8 @@ a:hover {
 
 .system-tab[aria-pressed="true"] {
   border-color: var(--color-accent);
-  background: transparent;
-  color: var(--color-ink);
+  background: var(--color-accent);
+  color: var(--color-accent-ink);
   font-weight: 700;
 }
 
@@ -329,7 +374,7 @@ a:hover {
   fill: var(--color-ink);
   stroke: none;
   font-family: var(--font-body);
-  font-size: 15px;
+  font-size: 19px;
   font-weight: 700;
 }
 
@@ -351,9 +396,7 @@ a:hover {
 }
 
 .flow-figure figcaption {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
+  display: grid;
   gap: var(--space-xs) var(--space-lg);
   border-top: 1px solid var(--color-rule);
   padding-top: var(--space-md);
@@ -364,6 +407,7 @@ a:hover {
 .flow-figure figcaption strong {
   color: var(--color-ink);
   font-weight: 700;
+  font-size: var(--text-lg);
 }
 
 .section-rule {
@@ -976,7 +1020,8 @@ a:hover {
   }
 
   .flow-figure {
-    padding: var(--space-sm);
+    padding: var(--space-md);
+    border-radius: 18px;
   }
 
   .system-picker {
@@ -988,7 +1033,7 @@ a:hover {
   }
 
   .flow-diagram text {
-    font-size: 17px;
+    font-size: 22px;
   }
 
   .section-intro,

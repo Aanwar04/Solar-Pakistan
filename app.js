@@ -48,6 +48,13 @@ function setSystem(key) {
   document.querySelector("#system-name").textContent = system.name;
   document.querySelector("#system-summary").textContent = system.summary;
   document.querySelector("#diagram-description").textContent = system.description;
+  document.querySelector(".node-grid").dataset.connected = String(key !== "off-grid");
+  document.querySelector(".node-battery").dataset.connected = String(key !== "on-grid");
+  document.querySelector("#diagram-status").textContent = {
+    "on-grid": "Grid connected · Battery not used",
+    "off-grid": "Independent of grid · Battery connected",
+    hybrid: "Grid connected · Battery connected"
+  }[key];
 }
 
 function calculateEstimate(monthlyKwh, sunHours, performanceRatio, panelWatts) {

@@ -49,12 +49,13 @@
         </div>
 
         <figure class="flow-figure" aria-labelledby="flow-caption">
+          <div class="diagram-heading"><span class="eyebrow">Follow the energy</span><span class="diagram-key"><i aria-hidden="true"></i> Active power flow</span></div>
           <div class="system-picker" role="group" aria-label="Choose a solar system">
             <button type="button" class="system-tab" data-system="on-grid" aria-pressed="true" aria-controls="flow-diagram">On-grid</button>
             <button type="button" class="system-tab" data-system="off-grid" aria-pressed="false" aria-controls="flow-diagram">Off-grid</button>
             <button type="button" class="system-tab" data-system="hybrid" aria-pressed="false" aria-controls="flow-diagram">Hybrid</button>
           </div>
-          <svg class="flow-diagram" id="flow-diagram" viewBox="0 0 620 340" role="img" aria-labelledby="diagram-title diagram-description">
+          <svg class="flow-diagram" id="flow-diagram" viewBox="0 45 620 295" role="img" aria-labelledby="diagram-title diagram-description">
             <title id="diagram-title">Solar power flow</title>
             <desc id="diagram-description">Solar panels and your usual electricity supply can both power the home. Most standard systems switch off during a power cut.</desc>
             <defs>
@@ -82,13 +83,13 @@
               <path class="icon-home" d="m269 153 41-34 41 34m-72-4v37h62v-37m-42 37v-25h20v25m-34-22h8v8h-8m39-8h8v8h-8"></path>
               <text x="310" y="199" text-anchor="middle">Your home</text>
             </g>
-            <g class="diagram-node node-grid">
+            <g class="diagram-node node-grid" data-connected="true">
               <rect class="node-card" x="430" y="66" width="165" height="116" rx="8"></rect>
               <path class="icon-grid" d="m512 84-20 66m20-66 20 66m-20-66v72m-24-53h48m-38 13h28m-33 13h38m-44 21h50m-43-47 19 13m-19 0 19-13m-24 26 24 12m14-12-14 12"></path>
               <path class="icon-bolt" d="m546 103-10 18h9l-8 16"></path>
-              <text x="512" y="169" text-anchor="middle">Power supply</text>
+              <text x="512" y="169" text-anchor="middle">Grid supply</text>
             </g>
-            <g class="diagram-node node-battery">
+            <g class="diagram-node node-battery" data-connected="false">
               <rect class="node-card" x="245" y="230" width="130" height="91" rx="8"></rect>
               <rect class="icon-battery-case" x="282" y="243" width="56" height="38" rx="4"></rect>
               <path class="icon-battery-terminal" d="M296 243v-5h8v5m12 0v-5h8v5"></path>
@@ -96,7 +97,8 @@
               <text x="310" y="306" text-anchor="middle">Battery</text>
             </g>
           </svg>
-          <figcaption id="flow-caption">
+          <p class="diagram-status" id="diagram-status">Grid connected · Battery not used</p>
+          <figcaption id="flow-caption" aria-live="polite" aria-atomic="true">
             <strong id="system-name">On-grid solar system</strong>
             <span id="system-summary">Uses your usual electricity supply; standard models stop during a power cut.</span>
           </figcaption>
