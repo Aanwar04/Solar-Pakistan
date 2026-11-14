@@ -49,13 +49,18 @@
         </div>
 
         <figure class="flow-figure" aria-labelledby="flow-caption">
-          <div class="diagram-heading"><span class="eyebrow">Follow the energy</span><span class="diagram-key"><i aria-hidden="true"></i> Active power flow</span></div>
+          <div class="diagram-heading"><span class="eyebrow">Follow the energy</span><span class="diagram-key"><i aria-hidden="true"></i> Possible power paths</span></div>
           <div class="system-picker" role="group" aria-label="Choose a solar system">
             <button type="button" class="system-tab" data-system="on-grid" aria-pressed="true" aria-controls="flow-diagram">On-grid</button>
             <button type="button" class="system-tab" data-system="off-grid" aria-pressed="false" aria-controls="flow-diagram">Off-grid</button>
             <button type="button" class="system-tab" data-system="hybrid" aria-pressed="false" aria-controls="flow-diagram">Hybrid</button>
           </div>
-          <svg class="flow-diagram" id="flow-diagram" viewBox="0 45 620 295" role="img" aria-labelledby="diagram-title diagram-description">
+          <div class="scenario-picker" role="group" aria-label="Choose a power scenario">
+            <button type="button" data-scenario="day" aria-pressed="true">Day</button>
+            <button type="button" data-scenario="night" aria-pressed="false">Night</button>
+            <button type="button" data-scenario="outage" aria-pressed="false">Power cut (day)</button>
+          </div>
+          <svg class="flow-diagram" id="flow-diagram" viewBox="0 45 620 370" role="img" aria-labelledby="diagram-title diagram-description">
             <title id="diagram-title">Solar power flow</title>
             <desc id="diagram-description">Solar panels and your usual electricity supply can both power the home. Most standard systems switch off during a power cut.</desc>
             <defs>
@@ -83,10 +88,18 @@
               </marker>
             </defs>
             <g class="flow-lines" fill="none" stroke="currentColor" stroke-width="2">
-              <path class="flow flow-solar-home" data-active="true" d="M190 125 C215 125 219 153 245 153" marker-end="url(#arrow)"></path>
-              <path class="flow flow-grid-home" data-active="true" d="M430 125 C405 125 401 153 375 153" marker-end="url(#arrow)"></path>
-              <path class="flow flow-solar-battery" data-active="false" d="M178 174 C200 211 221 261 245 267" marker-end="url(#arrow)"></path>
-              <path class="flow flow-battery-home" data-active="false" d="M310 230 C310 215 310 208 310 201" marker-end="url(#arrow)"></path>
+              <path class="flow" data-flow="solar-inverter" d="M190 125C225 125 220 170 245 170" marker-end="url(#arrow)"/>
+              <path class="flow" data-flow="grid-inverter" d="M430 125C395 125 400 170 375 170" marker-end="url(#arrow)"/>
+              <path class="flow" data-flow="inverter-home" d="M335 235V310H365" marker-end="url(#arrow)"/>
+              <path class="flow" data-flow="inverter-battery" d="M245 210C200 210 210 290 155 290" marker-end="url(#arrow)"/>
+              <path class="flow" data-flow="battery-inverter" d="M155 290C210 290 200 210 245 210" marker-end="url(#arrow)"/>
+            </g>
+            <g class="diagram-node node-inverter">
+              <rect class="node-card" x="245" y="130" width="130" height="105" rx="16"/>
+              <rect class="art-inverter" x="287" y="144" width="46" height="51" rx="7"/>
+              <path class="art-display" d="M296 153h28v14h-28z"/>
+              <path class="art-sine" d="M299 160q3-9 7 0t7 0t7 0M297 179h26m-26 6h26"/>
+              <text x="310" y="220" text-anchor="middle">Inverter</text>
             </g>
             <g class="diagram-node node-solar">
               <rect class="node-card" x="25" y="66" width="165" height="116" rx="16"></rect>
@@ -99,7 +112,7 @@
               <path class="art-reflection" d="m68 96 17 0-22 34H56z"></path>
               <text x="107" y="169" text-anchor="middle">Solar panels</text>
             </g>
-            <g class="diagram-node node-home">
+            <g class="diagram-node node-home" transform="translate(120 170)">
               <rect class="node-card" x="245" y="103" width="130" height="107" rx="16"></rect>
               <ellipse class="art-ground" cx="310" cy="184" rx="43" ry="6"></ellipse>
               <path class="art-wall" d="m279 147 31-25 31 25v35h-62z"></path>
@@ -118,7 +131,7 @@
               <path class="icon-bolt" d="m546 103-10 18h9l-8 16"></path>
               <text x="512" y="169" text-anchor="middle">Grid supply</text>
             </g>
-            <g class="diagram-node node-battery" data-connected="false">
+            <g class="diagram-node node-battery" data-connected="false" transform="translate(-220 40)">
               <rect class="node-card" x="245" y="230" width="130" height="91" rx="16"></rect>
               <rect class="icon-battery-case" x="282" y="243" width="56" height="38" rx="4"></rect>
               <path class="icon-battery-terminal" d="M296 243v-5h8v5m12 0v-5h8v5"></path>
@@ -127,11 +140,17 @@
               <text x="310" y="306" text-anchor="middle">Battery</text>
             </g>
           </svg>
+          <div class="equipment-status" aria-label="Equipment availability">
+            <span id="solar-state">Solar: available</span>
+            <span id="grid-state">Grid: connected</span>
+            <span id="battery-state">Battery: not used</span>
+          </div>
           <p class="diagram-status" id="diagram-status">Grid connected · Battery not used</p>
           <figcaption id="flow-caption" aria-live="polite" aria-atomic="true">
             <strong id="system-name">On-grid solar system</strong>
             <span id="system-summary">Uses your usual electricity supply; standard models stop during a power cut.</span>
           </figcaption>
+          <p class="diagram-footnote">Simplified energy paths, not a wiring diagram. Arrows show available routes, not simultaneous charging and discharging. Backup assumes a charged battery and suitable inverter, isolation equipment, and wiring. Grid export is not shown.</p>
         </figure>
       </section>
 

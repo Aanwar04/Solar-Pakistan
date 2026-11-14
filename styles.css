@@ -419,6 +419,51 @@ a:hover {
 .diagram-node .art-window-grid { stroke: #50705c; stroke-width: 1; }
 .diagram-node .art-wire { stroke: #7ba897; stroke-width: 1.5; }
 .diagram-node .art-battery-level { stroke: #9addbd; stroke-width: 2; }
+.diagram-node .art-inverter { fill: #d9e5cf; stroke: #a3c4a3; stroke-width: 1.5; }
+.diagram-node .art-display { fill: #244f40; stroke: #244f40; }
+.diagram-node .art-sine { stroke: #8cca93; stroke-width: 1.5; }
+.scenario-picker {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+.scenario-picker button {
+  min-height: 44px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  padding: 8px 12px;
+  background: transparent;
+  color: var(--color-ink-2);
+  font-size: var(--text-sm);
+  cursor: pointer;
+}
+.scenario-picker button:hover { border-color: var(--color-rule); }
+.scenario-picker button[aria-pressed="true"] {
+  border-color: var(--color-accent);
+  background: var(--color-paper-3);
+  color: var(--color-accent);
+}
+.equipment-status {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 8px;
+}
+.equipment-status span {
+  border: 1px solid var(--color-rule);
+  border-radius: 6px;
+  padding: 6px 8px;
+  color: var(--color-ink-2);
+  font-size: var(--text-xs);
+}
+.diagram-footnote {
+  margin-top: 16px;
+  color: var(--color-muted);
+  font-size: var(--text-xs);
+  line-height: 1.6;
+}
 .system-tab[aria-pressed="true"] { box-shadow: 0 3px 12px #061b1533; }
 
 .flow-figure figcaption {

@@ -35,26 +35,53 @@ const appliancePresets = {
   "LED light": 12
 };
 
-function setSystem(key) {
-  const system = systems[key];
-  if (!system) return;
+let selectedSystem = "on-grid";
+let selectedScenario = "day";
 
-  document.querySelectorAll(".system-tab").forEach((tab) => {
-    tab.setAttribute("aria-pressed", String(tab.dataset.system === key));
-  });
-  document.querySelectorAll(".flow").forEach((path) => {
-    path.dataset.active = String(system.flows.includes(path.classList[1].replace("flow-", "")));
-  });
-  document.querySelector("#system-name").textContent = system.name;
-  document.querySelector("#system-summary").textContent = system.summary;
-  document.querySelector("#diagram-description").textContent = system.description;
-  document.querySelector(".node-grid").dataset.connected = String(key !== "off-grid");
-  document.querySelector(".node-battery").dataset.connected = String(key !== "on-grid");
-  document.querySelector("#diagram-status").textContent = {
-    "on-grid": "Grid connected · Battery not used",
-    "off-grid": "Independent of grid · Battery connected",
-    hybrid: "Grid connected · Battery connected"
-  }[key];
+function getDiagramState(system, scenario) {
+  const battery = system !== "on-grid";
+  const grid = system !== "off-grid" && scenario !== "outage";
+  const solar = scenario !== "night" && !(system === "on-grid" && scenario === "outage");
+  const discharge = battery && (scenario === "night" || scenario === "outage");
+  const flows = [];
+  if (solar) flows.push("solar-inverter");
+  if (grid) flows.push("grid-inverter");
+  if (discharge) flows.push("battery-inverter");
+  else if (solar && battery) flows.push("inverter-battery");
+  if (solar || grid || discharge) flows.push("inverter-home");
+  const message = system === "on-grid"
+    ? scenario === "outage" ? "Standard on-grid solar shuts down during a grid outage. No backup power is shown."
+      : scenario === "night" ? "At night, the grid supplies your home. Solar panels are not generating."
+      : "Solar and the grid can supply your home. No battery is included in this example."
+    : scenario === "outage" ? system === "off-grid"
+      ? "A grid outage does not affect this independent system. Solar and stored energy can supply the home within equipment limits."
+      : "The grid is isolated. Solar and a charged battery can supply only the circuits wired for backup, within equipment limits."
+    : scenario === "night" ? "A charged battery can supply the home within its capacity and inverter limits." + (grid ? " Grid power is also available; priority depends on settings." : " This system has no grid connection.")
+    : "Solar can supply the home and charge the battery with surplus energy." + (grid ? " Grid power is available when needed." : " This system works independently of the grid.");
+  return { battery, grid, solar, flows, message };
+}
+
+function setSystem(key) {
+  if (!systems[key]) return;
+  selectedSystem = key;
+  renderDiagram();
+}
+
+function renderDiagram() {
+  const state = getDiagramState(selectedSystem, selectedScenario);
+  document.querySelectorAll(".system-tab").forEach(tab => tab.setAttribute("aria-pressed", String(tab.dataset.system === selectedSystem)));
+  document.querySelectorAll("[data-scenario]").forEach(tab => tab.setAttribute("aria-pressed", String(tab.dataset.scenario === selectedScenario)));
+  document.querySelectorAll(".flow").forEach(path => { path.dataset.active = String(state.flows.includes(path.dataset.flow)); });
+  document.querySelector("#system-name").textContent = selectedSystem === "hybrid" ? "Hybrid with battery backup" : systems[selectedSystem].name;
+  document.querySelector("#system-summary").textContent = state.message;
+  document.querySelector("#diagram-description").textContent = state.message;
+  for (const [node, available] of [["grid", state.grid], ["battery", state.battery], ["solar", state.solar], ["inverter", state.flows.length > 0], ["home", state.flows.length > 0]]) {
+    document.querySelector(`.node-${node}`).dataset.connected = String(available);
+  }
+  document.querySelector("#solar-state").textContent = "Solar: " + (selectedScenario === "night" ? "not generating" : state.solar ? "available" : "shut down");
+  document.querySelector("#grid-state").textContent = "Grid: " + (selectedSystem === "off-grid" ? "not used" : state.grid ? "connected" : "isolated");
+  document.querySelector("#battery-state").textContent = "Battery: " + (state.battery ? "included" : "not used");
+  document.querySelector("#diagram-status").textContent = selectedScenario === "outage" && selectedSystem === "hybrid" ? "Backup circuits only" : state.flows.length ? "Possible supply routes shown" : "No household supply in this example";
 }
 
 function calculateEstimate(monthlyKwh, sunHours, performanceRatio, panelWatts) {
@@ -400,3 +427,11 @@ document.querySelector("#appliance-list").addEventListener("change", (event) => 
 });
 
 updateBackupOptions();
+
+ document.querySelectorAll("[data-scenario]").forEach(button => {
+  button.addEventListener("click", () => {
+    selectedScenario = button.dataset.scenario;
+    renderDiagram();
+  });
+});
+renderDiagram();
