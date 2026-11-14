@@ -5,6 +5,20 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="Use this solar panel calculator for Pakistani homes to estimate panel needs from bill units or appliances. Compare solar systems and battery backup.">
     <title>Solar Panel Calculator for Pakistani Homes | Solar Guide</title>
+    <meta property="og:type" content="website">
+    <meta property="og:locale" content="en_PK">
+    <meta property="og:site_name" content="Solar field guide">
+    <meta property="og:title" content="Plan solar for your Pakistani home">
+    <meta property="og:description" content="Compare solar systems, estimate panel needs, and plan battery backup. Free to use, with clear and adjustable assumptions.">
+    <meta property="og:image" content="https://aanwar04.github.io/Solar-Pakistan/social-preview.png">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Solar field guide: Compare systems. Estimate panels. Plan backup.">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Plan solar for your Pakistani home">
+    <meta name="twitter:description" content="A free solar calculator and plain-language guide for Pakistani homeowners.">
+    <meta name="twitter:image" content="https://aanwar04.github.io/Solar-Pakistan/social-preview.png">
+    <link rel="icon" href="./logo.svg" type="image/svg+xml">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;700&family=Prata&display=swap" rel="stylesheet">
@@ -13,7 +27,7 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
     <header class="masthead">
-      <a class="wordmark" href="#top" aria-label="Solar field guide home">Solar field guide</a>
+      <a class="wordmark" href="#top" aria-label="Solar field guide home"><img src="./logo.svg" width="40" height="40" alt="">Solar field guide</a>
       <nav class="site-nav" aria-label="Main navigation">
         <a href="#compare">Compare systems</a>
         <a href="#estimate">Estimate solar</a>
@@ -24,12 +38,14 @@
     <main id="main">
       <section class="hero container" id="top" aria-labelledby="hero-title">
         <div class="hero-copy">
+          <p class="eyebrow">Solar decisions, made clearer</p>
           <h1 id="hero-title">A simple solar panel calculator for Pakistani homes.</h1>
           <p class="lead">Compare on-grid, off-grid and hybrid solar systems, understand battery backup during power cuts, and estimate panel needs from your bill or the devices you use.</p>
           <div class="hero-actions">
-            <a class="button button-primary" href="#compare">Compare the systems</a>
-            <a class="text-link" href="#estimate">Try the estimate</a>
+            <a class="button button-primary" href="#estimate">Calculate my solar needs</a>
+            <a class="text-link" href="#compare">Compare the systems</a>
           </div>
+          <p class="hero-note">Free to use · No signup · Adjustable assumptions</p>
         </div>
 
         <figure class="flow-figure" aria-labelledby="flow-caption">
@@ -93,6 +109,7 @@
             <h2 id="compare-title">Compare solar systems for your home</h2>
             <p class="lead">The main difference is whether your home can use stored power when the usual electricity supply is off.</p>
           </div>
+          <p class="comparison-hint">On a small screen, scroll the table sideways to compare all three systems.</p>
           <div class="table-wrap" role="region" aria-label="Inverter system comparison" tabindex="0">
             <table class="comparison-table">
               <thead>
@@ -205,6 +222,12 @@
                 <input id="monthly-kwh" name="monthlyKwh" type="number" min="1" max="100000" step="1" required inputmode="decimal">
                 <span>units</span>
               </div>
+              <div class="example-choices" role="group" aria-label="Try an example monthly electricity usage">
+                <span>Try an example</span>
+                <button type="button" data-monthly-example="300">300 units</button>
+                <button type="button" data-monthly-example="600">600 units</button>
+                <button type="button" data-monthly-example="1000">1,000 units</button>
+              </div>
               <p class="form-help">Find “units consumed” on your electricity bill. One unit is the same as 1 kWh. Not sure? Check a recent bill or use the device list instead.</p>
               <details class="advanced-settings">
                 <summary>Change sunlight and system assumptions</summary>
@@ -291,7 +314,7 @@
               <p class="form-help" id="battery-estimate-help">Your battery estimate is approximate. An installer must check battery type, device startup power, and safe wiring.</p>
             </form>
           </div>
-          <div class="estimate-results" id="estimate-results" aria-live="polite" aria-atomic="true">
+          <div class="estimate-results" id="estimate-results" aria-live="polite" aria-atomic="true" tabindex="-1">
             <p class="results-heading">Your estimate will appear here</p>
             <dl class="result-list">
               <div><dt>Electricity used each day</dt><dd><output id="daily-kwh">—</output> kWh</dd></div>
@@ -336,7 +359,7 @@
 
     <footer class="site-footer">
       <div class="container footer-inner">
-        <a class="wordmark" href="#top">Solar field guide</a>
+        <a class="wordmark" href="#top"><img src="./logo.svg" width="40" height="40" alt="">Solar field guide</a>
         <p>Understand the system before choosing equipment.</p>
         <nav aria-label="Footer navigation">
           <a href="#compare">Compare</a>

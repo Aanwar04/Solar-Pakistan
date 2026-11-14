@@ -102,6 +102,10 @@ function renderEstimate({ dailyKwh, connectedKw, estimate, batteryKwh = null, me
   document.querySelector("#estimate-basis").textContent = basis;
   document.querySelector("#estimate-message").textContent = message;
   document.querySelector("#print-estimate").disabled = false;
+  document.querySelector("#estimate-results").focus({ preventScroll: true });
+  if (window.matchMedia("(max-width: 42rem)").matches) {
+    document.querySelector("#estimate-results").scrollIntoView({ block: "start" });
+  }
 }
 
 function invalidateEstimate(reason) {
@@ -236,6 +240,7 @@ function updateApplianceEstimate(event) {
 }
 
 function setCalculator(key) {
+  invalidateEstimate("Input method changed. Calculate using your chosen method.");
   document.querySelectorAll(".calculator-tab").forEach((tab) => {
     const selected = tab.dataset.calculator === key;
     tab.setAttribute("aria-pressed", String(selected));
@@ -333,6 +338,7 @@ function addApplianceRow() {
   row.append(criticalLabel, remove);
   list.append(row);
   updateBackupOptions();
+  invalidateEstimate("Appliance added. Calculate again to include it.");
   document.querySelector("#appliance-error").textContent = "";
 }
 
@@ -345,6 +351,13 @@ document.querySelectorAll(".calculator-tab").forEach((tab) => {
 });
 
 document.querySelector("#estimate-form").addEventListener("submit", updateMonthlyEstimate);
+
+document.querySelectorAll("[data-monthly-example]").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelector("#monthly-kwh").value = button.dataset.monthlyExample;
+    document.querySelector("#estimate-form").requestSubmit();
+  });
+});
 document.querySelector("#appliance-form").addEventListener("submit", updateApplianceEstimate);
 document.querySelector("#print-estimate").addEventListener("click", () => window.print());
 document.querySelector("#estimate-form").addEventListener("change", () => invalidateEstimate("Monthly estimate inputs changed."));
@@ -366,7 +379,12 @@ document.querySelector("#system-type").addEventListener("change", () => {
 document.querySelector("#add-appliance").addEventListener("click", addApplianceRow);
 document.querySelector("#appliance-list").addEventListener("click", (event) => {
   const button = event.target.closest(".remove-appliance");
-  if (button) button.closest("[data-appliance-row]").remove();
+  if (button) {
+    button.closest("[data-appliance-row]").remove();
+    document.querySelector("#appliance-limit").textContent = "";
+    invalidateEstimate("Appliance removed. Calculate again to update your estimate.");
+    document.querySelector("#add-appliance").focus();
+  }
 });
 document.querySelector("#appliance-list").addEventListener("change", (event) => {
   const select = event.target.closest('select[data-field="name"]');
